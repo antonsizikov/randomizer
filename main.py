@@ -7,14 +7,14 @@ def main(page: Page):
     page.window_height = 400
     page.window_width = 500
     
-    num_from = TextField(value="", text_align="right", width=100)
-    num_to = TextField(value="", text_align="right", width=100)
-    num_count = TextField(value="", text_align="right", width=100)
+    start_num = TextField(label="From", text_align="right", width=100)
+    end_num = TextField(label="To", text_align="right", width=100)
+    quantity = TextField(label="Count", text_align="right", width=100)
     
     page.add(
         Row(
             [
-            Text("Randimizer", theme_style=TextThemeStyle.DISPLAY_SMALL),
+            Text("Randomizer", theme_style=TextThemeStyle.DISPLAY_SMALL),
             ],
             alignment="center",
         ),
@@ -23,22 +23,19 @@ def main(page: Page):
             [
                 Column(
                     [
-                        Text("From", theme_style=TextThemeStyle.TITLE_MEDIUM),
-                        num_from,
+                        start_num,
                     ],
                     alignment="center",
                 ),
                 Column(
                     [
-                        Text("To", theme_style=TextThemeStyle.TITLE_MEDIUM),
-                        num_to,
+                        end_num,
                     ],
                     alignment="center",
                 ),
                 Column(
                     [
-                        Text("Count", theme_style=TextThemeStyle.TITLE_MEDIUM),
-                        num_count,
+                        quantity,
                     ],
                     alignment="center",
                 ),
