@@ -54,7 +54,7 @@ def main(page: Page):
         ),
         Row(
             [
-                OutlinedButton(text="Submit", on_click=randomizer),
+                OutlinedButton(text="Count", on_click=randomizer),
             ],
             alignment="center",
         ),
