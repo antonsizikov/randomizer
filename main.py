@@ -18,13 +18,17 @@ def main(page: Page):
     def print_result(a):
         print(a)
     
-    def randomizer(start_num, end_num, quantity):
+    def sum_nums(e):
+        result = int(start_num.value) + int(end_num.value)
+        print(result)
+    
+    def randomizer(e):
         i = 1
-        result = ''
+        result = []
         while i <= int(quantity.value):
-            #print(str(randint(int(start_num.value), int(end_num.value))))
-            result += str(randint(int(start_num.value), int(end_num.value)))
+            result.append(str(randint(int(start_num.value), int(end_num.value))))
             i = i + 1
+        print(result)
         return result
     
     page.add(
@@ -60,7 +64,7 @@ def main(page: Page):
         ),
         Row(
             [
-                ElevatedButton(text="Submit", on_click=pass_func),
+                ElevatedButton(text="Submit", on_click=randomizer),
             ],
             alignment="center",
         ),
