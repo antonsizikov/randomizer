@@ -1,8 +1,9 @@
 import flet
-from flet import IconButton, Page, Row, Column, TextField, icons, Text, TextThemeStyle
+from random import randint
+from flet import IconButton, Page, Row, Column, TextField, icons, Text, TextThemeStyle, ElevatedButton
 
 def main(page: Page):
-    page.title = "Flet counter example"
+    page.title = "Randomizer"
     page.vertical_alignment = "center"
     page.window_height = 400
     page.window_width = 500
@@ -10,6 +11,9 @@ def main(page: Page):
     start_num = TextField(label="From", text_align="right", width=100)
     end_num = TextField(label="To", text_align="right", width=100)
     quantity = TextField(label="Count", text_align="right", width=100)
+    
+    def pass_func():
+        pass
     
     page.add(
         Row(
@@ -39,6 +43,12 @@ def main(page: Page):
                     ],
                     alignment="center",
                 ),
+            ],
+            alignment="center",
+        ),
+        Row(
+            [
+                ElevatedButton(text="Submit", on_click=pass_func),
             ],
             alignment="center",
         ),
