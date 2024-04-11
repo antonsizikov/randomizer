@@ -1,6 +1,6 @@
 import flet
 from random import randint
-from flet import IconButton, Page, Row, Column, TextField, icons, Text, TextThemeStyle, ElevatedButton, NumbersOnlyInputFilter, KeyboardType
+from flet import Page, Row, Column, Text, TextThemeStyle, TextField, NumbersOnlyInputFilter, KeyboardType, OutlinedButton
 
 def main(page: Page):
     page.title = "Randomizer"
@@ -54,7 +54,13 @@ def main(page: Page):
         ),
         Row(
             [
-                ElevatedButton(text="Submit", on_click=randomizer),
+                OutlinedButton(text="Submit", on_click=randomizer),
+            ],
+            alignment="center",
+        ),
+        Row(
+            [
+                Text(f"Results:\n", theme_style=TextThemeStyle.BODY_LARGE),
             ],
             alignment="center",
         ),
