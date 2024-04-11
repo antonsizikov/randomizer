@@ -18,23 +18,7 @@ def main(page: Page):
             ],
             alignment="center",
         ),
-        Row(
-            [
-                Text("From", theme_style=TextThemeStyle.TITLE_MEDIUM),
-                Text("To", theme_style=TextThemeStyle.TITLE_MEDIUM),
-                Text("Count", theme_style=TextThemeStyle.TITLE_MEDIUM),
-            ],
-            alignment="center",
-        ),
-        Row(
-            [
-                num_from,
-                num_to,
-                num_count,
-            ],
-            alignment="center",
-        ),
-        
+
         Row(
             [
                 Column(
