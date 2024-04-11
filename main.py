@@ -15,6 +15,18 @@ def main(page: Page):
     def pass_func():
         pass
     
+    def print_result(a):
+        print(a)
+    
+    def randomizer(start_num, end_num, quantity):
+        i = 1
+        result = ''
+        while i <= int(quantity.value):
+            #print(str(randint(int(start_num.value), int(end_num.value))))
+            result += str(randint(int(start_num.value), int(end_num.value)))
+            i = i + 1
+        return result
+    
     page.add(
         Row(
             [
