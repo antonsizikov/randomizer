@@ -11,17 +11,7 @@ def main(page: Page):
     start_num = TextField(label="From", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
     end_num = TextField(label="To", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
     quantity = TextField(label="Count", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
-    
-    def pass_func():
-        pass
-    
-    def print_result(a):
-        print(a)
-    
-    def sum_nums(e):
-        result = int(start_num.value) + int(end_num.value)
-        print(result)
-    
+
     def randomizer(e):
         i = 1
         result = []
