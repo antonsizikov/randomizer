@@ -20,6 +20,16 @@ def main(page: Page):
             result.append(str(randint(int(start_num.value), int(end_num.value))))
             i = i + 1
         print(result)
+        
+        page.add(
+            Row(
+                [
+                    Text(f"{result}", theme_style=TextThemeStyle.BODY_LARGE),
+                ],
+            alignment="center",
+            )
+        )
+        
         return result
     
     def validate(e):
@@ -73,7 +83,7 @@ def main(page: Page):
         ),
         Row(
             [
-                Text(f"Results:\n", theme_style=TextThemeStyle.BODY_LARGE),
+                Text(f"Results:", theme_style=TextThemeStyle.BODY_LARGE),
             ],
             alignment="center",
         ),
