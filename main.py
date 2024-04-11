@@ -1,6 +1,6 @@
 import flet
 from random import randint
-from flet import IconButton, Page, Row, Column, TextField, icons, Text, TextThemeStyle, ElevatedButton, NumbersOnlyInputFilter
+from flet import IconButton, Page, Row, Column, TextField, icons, Text, TextThemeStyle, ElevatedButton, NumbersOnlyInputFilter, KeyboardType
 
 def main(page: Page):
     page.title = "Randomizer"
@@ -8,9 +8,9 @@ def main(page: Page):
     page.window_height = 400
     page.window_width = 500
     
-    start_num = TextField(label="From", text_align="right", width=100, input_filter=NumbersOnlyInputFilter())
-    end_num = TextField(label="To", text_align="right", width=100, input_filter=NumbersOnlyInputFilter())
-    quantity = TextField(label="Count", text_align="right", width=100, input_filter=NumbersOnlyInputFilter())
+    start_num = TextField(label="From", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
+    end_num = TextField(label="To", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
+    quantity = TextField(label="Count", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
     
     def pass_func():
         pass
