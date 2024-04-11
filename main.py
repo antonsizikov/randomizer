@@ -11,6 +11,7 @@ def main(page: Page):
     start_num = TextField(label="From", value="1", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
     end_num = TextField(label="To", value="10", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
     quantity = TextField(label="Count", value="1", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
+    button_count = OutlinedButton(text="Count")
 
     def randomizer(e):
         i = 1
@@ -20,6 +21,18 @@ def main(page: Page):
             i = i + 1
         print(result)
         return result
+    
+    def validate(e):
+        if all([start_num.value, end_num.value, quantity.value]):
+            button_count.disabled = False
+        else:
+            button_count.disabled = True
+        page.update()
+    
+    start_num.on_change = validate
+    end_num.on_change = validate
+    quantity.on_change = validate
+    button_count.on_click = randomizer
     
     page.add(
         Row(
@@ -54,7 +67,7 @@ def main(page: Page):
         ),
         Row(
             [
-                OutlinedButton(text="Count", on_click=randomizer),
+                button_count,
             ],
             alignment="center",
         ),
