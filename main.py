@@ -1,6 +1,6 @@
 import flet
 from random import randint
-from flet import Page, Row, Column, Text, TextThemeStyle, TextField, NumbersOnlyInputFilter, KeyboardType, OutlinedButton, Container, AlertDialog, TextButton, colors
+from flet import Page, Row, Column, Text, TextThemeStyle, TextField, NumbersOnlyInputFilter, KeyboardType, OutlinedButton, Container, AlertDialog, TextButton
 
 def main(page: Page):
     page.title = "Randomizer"
