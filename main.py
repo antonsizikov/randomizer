@@ -8,12 +8,24 @@ def main(page: Page):
     page.window_height = 400
     page.window_width = 500
     
+    res_str = ''
+    
     start_num = TextField(label="From", value="1", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
     end_num = TextField(label="To", value="10", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
     quantity = TextField(label="Count", value="1", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
     button_count = OutlinedButton(text="Count")
     button_copy = OutlinedButton(text="Copy")
-        
+    button_popup = OutlinedButton(text="Popup")
+    
+    def show_window(e):
+        page.dialog = popup_window
+        popup_window.open = True
+        page.update()
+    
+    def close_win(e):
+        popup_window.open = False
+        page.update()
+    
     def randomizer(e):
         i = 1
         res_list = []
@@ -77,6 +89,17 @@ def main(page: Page):
     quantity.on_change = validate
     button_count.on_click = main_rand
     button_copy.on_click = copy_result
+    button_popup.on_click = show_window
+    
+    popup_window = AlertDialog(
+        modal=True,
+        title=Text("Result:"),
+        content=Text(f'{res_str}'),
+        actions=[
+            TextButton("Copy", on_click=print_result),
+            TextButton("Close", on_click=close_win),
+        ],
+    )
     
     page.add(
         Row(
@@ -112,6 +135,7 @@ def main(page: Page):
         Row(
             [
                 button_count,
+                button_popup,
                 button_copy,
             ],
             alignment="center",
