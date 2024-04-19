@@ -1,6 +1,6 @@
 import flet
 from random import randint
-from flet import Page, Row, Column, Text, TextThemeStyle, TextField, NumbersOnlyInputFilter, KeyboardType, OutlinedButton
+from flet import Page, Row, Column, Text, TextThemeStyle, TextField, NumbersOnlyInputFilter, KeyboardType, OutlinedButton, Container, AlertDialog, TextButton, colors
 
 def main(page: Page):
     page.title = "Randomizer"
@@ -13,7 +13,7 @@ def main(page: Page):
     quantity = TextField(label="Count", value="1", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
     button_count = OutlinedButton(text="Count")
     button_copy = OutlinedButton(text="Copy")
-
+        
     def randomizer(e):
         i = 1
         res_list = []
@@ -42,7 +42,15 @@ def main(page: Page):
         page.add(
             Row(
                 [
-                    Text(f"{res_str}", theme_style=TextThemeStyle.BODY_LARGE),
+                    Container(
+                        content=Text(f'{res_str}'),
+                        margin=0,
+                        padding=10,
+                        bgcolor=flet.colors.GREY_500,
+                        border_radius=10,
+                        ink=True,
+                        on_click=copy_result
+                        ),
                 ],
             alignment="center",
             )
