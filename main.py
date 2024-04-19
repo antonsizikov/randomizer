@@ -22,8 +22,12 @@ def main(page: Page):
         #print(result)        
         return res_list
     
+    def sort_list(res_list):
+        res_list = [int(i) for i in res_list]
+        res_list = sorted(res_list)
+        return res_list
+    
     def list_to_str(res_list):
-        res_list.sort()
         res_str = ''
         sep = ', '
         
@@ -45,6 +49,7 @@ def main(page: Page):
     
     def main_rand(e):
         res_list = randomizer(e)
+        res_list = sort_list(res_list)
         res_str = list_to_str(res_list)
         print_result(res_str)
     
