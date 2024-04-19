@@ -15,22 +15,38 @@ def main(page: Page):
 
     def randomizer(e):
         i = 1
-        result = []
+        res_list = []
         while i <= int(quantity.value):
-            result.append(str(randint(int(start_num.value), int(end_num.value))))
+            res_list.append(str(randint(int(start_num.value), int(end_num.value))))
             i = i + 1
-        print(result)
+        #print(result)        
+        return res_list
+    
+    def list_to_str(res_list):
+        res_list.sort()
+        res_str = ''
+        sep = ', '
         
+        for n in res_list:
+            res_str += str(n)
+            res_str += sep
+    
+        return res_str[:-2]
+    
+    def print_result(res_str):
         page.add(
             Row(
                 [
-                    Text(f"{result}", theme_style=TextThemeStyle.BODY_LARGE),
+                    Text(f"{res_str}", theme_style=TextThemeStyle.BODY_LARGE),
                 ],
             alignment="center",
             )
         )
-        
-        return result
+    
+    def main_rand(e):
+        res_list = randomizer(e)
+        res_str = list_to_str(res_list)
+        print_result(res_str)
     
     def validate(e):
         if all([start_num.value, end_num.value, quantity.value]):
@@ -42,7 +58,7 @@ def main(page: Page):
     start_num.on_change = validate
     end_num.on_change = validate
     quantity.on_change = validate
-    button_count.on_click = randomizer
+    button_count.on_click = main_rand
     
     page.add(
         Row(
