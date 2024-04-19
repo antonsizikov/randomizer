@@ -12,6 +12,7 @@ def main(page: Page):
     end_num = TextField(label="To", value="10", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
     quantity = TextField(label="Count", value="1", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
     button_count = OutlinedButton(text="Count")
+    button_copy = OutlinedButton(text="Copy")
 
     def randomizer(e):
         i = 1
@@ -60,10 +61,14 @@ def main(page: Page):
             button_count.disabled = True
         page.update()
     
+    def copy_result(e):
+        page.set_clipboard("This value comes from Flet app")
+    
     start_num.on_change = validate
     end_num.on_change = validate
     quantity.on_change = validate
     button_count.on_click = main_rand
+    button_copy.on_click = copy_result
     
     page.add(
         Row(
@@ -99,6 +104,7 @@ def main(page: Page):
         Row(
             [
                 button_count,
+                button_copy,
             ],
             alignment="center",
         ),
