@@ -1,6 +1,6 @@
 import flet
 from random import randint
-from flet import Page, Row, Column, Text, TextThemeStyle, TextField, NumbersOnlyInputFilter, KeyboardType, OutlinedButton, Container, AlertDialog, TextButton
+from flet import Page, Row, Column, Text, TextThemeStyle, TextField, NumbersOnlyInputFilter, KeyboardType, FilledButton, AlertDialog, TextButton
 
 def main(page: Page):
     page.title = "Randomizer"
@@ -11,8 +11,7 @@ def main(page: Page):
     start_num = TextField(label="From", value="", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
     end_num = TextField(label="To", value="", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
     quantity = TextField(label="Quantity", value="", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
-    button_copy = OutlinedButton(text="Copy")
-    button_count = OutlinedButton(text="Count", disabled=True)
+    button_count = FilledButton(text="Count", disabled=True)
     
     def randomizer(e):
         i = 1
@@ -76,7 +75,6 @@ def main(page: Page):
     end_num.on_change = validate
     quantity.on_change = validate
     button_count.on_click = print_result_in_window
-    button_copy.on_click = copy_result
     
     page.add(
         Row(
