@@ -8,14 +8,34 @@ def main(page: Page):
     page.window_height = 400
     page.window_width = 500
     
-    res_str = ''
-    
     start_num = TextField(label="From", value="", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
     end_num = TextField(label="To", value="", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
-    quantity = TextField(label="Count", value="", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
-    button_count_old = OutlinedButton(text="Count")
+    quantity = TextField(label="Quantity", value="", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
     button_copy = OutlinedButton(text="Copy")
     button_count = OutlinedButton(text="Count", disabled=True)
+    
+    def randomizer(e):
+        i = 1
+        res_list = []
+        while i <= int(quantity.value):
+            res_list.append(str(randint(int(start_num.value), int(end_num.value))))
+            i = i + 1
+        return res_list
+    
+    def sort_list(res_list):
+        res_list = [int(i) for i in res_list]
+        res_list = sorted(res_list)
+        return res_list
+    
+    def list_to_str(res_list):
+        res_str = ''
+        sep = ', '
+        
+        for n in res_list:
+            res_str += str(n)
+            res_str += sep
+    
+        return res_str[:-2]
     
     def show_window(e, res_str):
         def close_win(e):
@@ -36,61 +56,11 @@ def main(page: Page):
         popup_window.open = True
         page.update()
     
-    def randomizer(e):
-        i = 1
-        res_list = []
-        while i <= int(quantity.value):
-            res_list.append(str(randint(int(start_num.value), int(end_num.value))))
-            i = i + 1
-        #print(result)        
-        return res_list
-    
-    def sort_list(res_list):
-        res_list = [int(i) for i in res_list]
-        res_list = sorted(res_list)
-        return res_list
-    
-    def list_to_str(res_list):
-        res_str = ''
-        sep = ', '
-        
-        for n in res_list:
-            res_str += str(n)
-            res_str += sep
-    
-        return res_str[:-2]
-    
-    def print_result(res_str):
-        page.add(
-            Row(
-                [
-                    Container(
-                        content=Text(f'{res_str}'),
-                        margin=0,
-                        padding=10,
-                        bgcolor=flet.colors.GREY_500,
-                        border_radius=10,
-                        ink=True,
-                        on_click=copy_result
-                        ),
-                ],
-            alignment="center",
-            )
-        )
-    
     def print_result_in_window(e):
         res_list = randomizer(e)
         res_list = sort_list(res_list)
         res_str = list_to_str(res_list)
         show_window(e, res_str)
-        
-    
-    def main_rand(e):
-        res_list = randomizer(e)
-        res_list = sort_list(res_list)
-        res_str = list_to_str(res_list)
-        print_result(res_str)
-        
     
     def validate(e):
         if all([start_num.value, end_num.value, quantity.value]):
@@ -105,11 +75,8 @@ def main(page: Page):
     start_num.on_change = validate
     end_num.on_change = validate
     quantity.on_change = validate
-    button_count_old.on_click = main_rand
-    button_copy.on_click = copy_result
     button_count.on_click = print_result_in_window
-    
-    
+    button_copy.on_click = copy_result
     
     page.add(
         Row(
@@ -144,18 +111,10 @@ def main(page: Page):
         ),
         Row(
             [
-                #button_count_old,
                 button_count,
-                #button_copy,
             ],
             alignment="center",
         ),
-        # Row(
-        #     [
-        #         Text(f"Results:", theme_style=TextThemeStyle.BODY_LARGE),
-        #     ],
-        #     alignment="center",
-        # ),
     )
 
 
