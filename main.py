@@ -1,21 +1,17 @@
-import flet
+import flet as ft
 from random import randint
-from flet import Page, Row, Column, Text, TextThemeStyle, TextField, NumbersOnlyInputFilter, KeyboardType, FilledButton, AlertDialog, TextButton, Image
+from flet import Page, Row, Column, Image, Text, TextField, TextButton, FilledButton, NumbersOnlyInputFilter, KeyboardType, AlertDialog
 
 def main(page: Page):
+    page.theme = ft.Theme(color_scheme_seed=ft.colors.DEEP_PURPLE)
     page.title = "Randomizer"
     page.vertical_alignment = "center"
     page.horizontal_alignment = "center"
     page.window_height = 400
     page.window_width = 500
     
-    img = Image(
-        src=f"/Volumes/Files/Code/Python/flet/Randomizer/assets/icon.svg",
-        width=50,
-        height=50,
-        fit=flet.ImageFit.CONTAIN,
-    )
-    title = Text("Randomizer", theme_style=TextThemeStyle.DISPLAY_SMALL)
+    img = Image(src=f"/Volumes/Files/Code/Python/flet/Randomizer/assets/icon.svg", width=50, height=50, fit=ft.ImageFit.CONTAIN)
+    title = Text("Randomizer", theme_style=ft.TextThemeStyle.DISPLAY_SMALL)
     start_num = TextField(label="From", value="", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
     end_num = TextField(label="To", value="", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
     quantity = TextField(label="Quantity", value="", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
@@ -125,4 +121,4 @@ def main(page: Page):
 
 
 if __name__ == "__main__":
-    flet.app(target=main)
+    ft.app(target=main)
