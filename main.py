@@ -10,14 +10,14 @@ def main(page: Page):
     
     res_str = ''
     
-    start_num = TextField(label="From", value="1", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
-    end_num = TextField(label="To", value="10", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
-    quantity = TextField(label="Count", value="1", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
-    button_count = OutlinedButton(text="Count")
+    start_num = TextField(label="From", value="", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
+    end_num = TextField(label="To", value="", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
+    quantity = TextField(label="Count", value="", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
+    button_count_old = OutlinedButton(text="Count")
     button_copy = OutlinedButton(text="Copy")
-    button_popup = OutlinedButton(text="Popup")
+    button_count = OutlinedButton(text="Count", disabled=True)
     
-    def show_window(e,res_str):
+    def show_window(e, res_str):
         def close_win(e):
             popup_window.open = False
             page.update()
@@ -105,9 +105,9 @@ def main(page: Page):
     start_num.on_change = validate
     end_num.on_change = validate
     quantity.on_change = validate
-    button_count.on_click = main_rand
+    button_count_old.on_click = main_rand
     button_copy.on_click = copy_result
-    button_popup.on_click = print_result_in_window
+    button_count.on_click = print_result_in_window
     
     
     
@@ -144,18 +144,18 @@ def main(page: Page):
         ),
         Row(
             [
+                #button_count_old,
                 button_count,
-                button_popup,
-                button_copy,
+                #button_copy,
             ],
             alignment="center",
         ),
-        Row(
-            [
-                Text(f"Results:", theme_style=TextThemeStyle.BODY_LARGE),
-            ],
-            alignment="center",
-        ),
+        # Row(
+        #     [
+        #         Text(f"Results:", theme_style=TextThemeStyle.BODY_LARGE),
+        #     ],
+        #     alignment="center",
+        # ),
     )
 
 
