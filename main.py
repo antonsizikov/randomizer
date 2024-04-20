@@ -17,13 +17,23 @@ def main(page: Page):
     button_copy = OutlinedButton(text="Copy")
     button_popup = OutlinedButton(text="Popup")
     
-    def show_window(e):
+    def show_window(e,res_str):
+        def close_win(e):
+            popup_window.open = False
+            page.update()
+        
+        popup_window = AlertDialog(
+            modal=True,
+            title=Text("Result:"),
+            content=Text(f'{res_str}'),
+            actions=[
+                TextButton("Copy", on_click=copy_result(e, res_str)),
+                TextButton("Close", on_click=close_win),
+            ],
+        )
+        
         page.dialog = popup_window
         popup_window.open = True
-        page.update()
-    
-    def close_win(e):
-        popup_window.open = False
         page.update()
     
     def randomizer(e):
@@ -68,11 +78,19 @@ def main(page: Page):
             )
         )
     
+    def print_result_in_window(e):
+        res_list = randomizer(e)
+        res_list = sort_list(res_list)
+        res_str = list_to_str(res_list)
+        show_window(e, res_str)
+        
+    
     def main_rand(e):
         res_list = randomizer(e)
         res_list = sort_list(res_list)
         res_str = list_to_str(res_list)
         print_result(res_str)
+        
     
     def validate(e):
         if all([start_num.value, end_num.value, quantity.value]):
@@ -81,25 +99,17 @@ def main(page: Page):
             button_count.disabled = True
         page.update()
     
-    def copy_result(e):
-        page.set_clipboard("This value comes from Flet app")
+    def copy_result(e, res_str):
+        page.set_clipboard(res_str)
     
     start_num.on_change = validate
     end_num.on_change = validate
     quantity.on_change = validate
     button_count.on_click = main_rand
     button_copy.on_click = copy_result
-    button_popup.on_click = show_window
+    button_popup.on_click = print_result_in_window
     
-    popup_window = AlertDialog(
-        modal=True,
-        title=Text("Result:"),
-        content=Text(f'{res_str}'),
-        actions=[
-            TextButton("Copy", on_click=print_result),
-            TextButton("Close", on_click=close_win),
-        ],
-    )
+    
     
     page.add(
         Row(
