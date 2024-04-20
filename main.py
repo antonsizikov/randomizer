@@ -1,13 +1,21 @@
 import flet
 from random import randint
-from flet import Page, Row, Column, Text, TextThemeStyle, TextField, NumbersOnlyInputFilter, KeyboardType, FilledButton, AlertDialog, TextButton
+from flet import Page, Row, Column, Text, TextThemeStyle, TextField, NumbersOnlyInputFilter, KeyboardType, FilledButton, AlertDialog, TextButton, Image
 
 def main(page: Page):
     page.title = "Randomizer"
     page.vertical_alignment = "center"
+    page.horizontal_alignment = "center"
     page.window_height = 400
     page.window_width = 500
     
+    img = Image(
+        src=f"/Volumes/Files/Code/Python/flet/Randomizer/assets/icon.svg",
+        width=50,
+        height=50,
+        fit=flet.ImageFit.CONTAIN,
+    )
+    title = Text("Randomizer", theme_style=TextThemeStyle.DISPLAY_SMALL)
     start_num = TextField(label="From", value="", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
     end_num = TextField(label="To", value="", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
     quantity = TextField(label="Quantity", value="", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
@@ -79,7 +87,8 @@ def main(page: Page):
     page.add(
         Row(
             [
-            Text("Randomizer", theme_style=TextThemeStyle.DISPLAY_SMALL),
+                img,
+                title,
             ],
             alignment="center",
         ),
@@ -90,7 +99,6 @@ def main(page: Page):
                     [
                         start_num,
                     ],
-                    alignment="center",
                 ),
                 Column(
                     [
