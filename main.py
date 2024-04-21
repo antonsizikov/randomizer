@@ -70,13 +70,13 @@ def main(page: Page):
             res_list = sort_list(res_list)
         res_str = list_to_str(res_list)
         show_window(e, res_str)
-        
+    
     def validate(e):
         if all([start_num.value, end_num.value, quantity.value]):
-            rep_quantity_validtion = int(quantity.value) >= int(end_num.value)
-            if not cb_repeat:
-                if not rep_quantity_validtion:
-                    button_count.disabled = False
+            if cb_repeat.value or int(quantity.value) <= int(end_num.value):
+                button_count.disabled = False
+            else:
+                button_count.disabled = True
         else:
             button_count.disabled = True
         page.update()
@@ -87,6 +87,7 @@ def main(page: Page):
     start_num.on_change = validate
     end_num.on_change = validate
     quantity.on_change = validate
+    cb_repeat.on_change = validate
     button_count.on_click = print_result_in_window
     
     page.add(
