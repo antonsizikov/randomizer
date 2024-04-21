@@ -53,7 +53,7 @@ def main(page: Page):
         popup_window = AlertDialog(
             modal=True,
             title=Text("Result:"),
-            content=Text(f'{res_str}'),
+            content=Text(f'{res_str}', selectable=True),
             actions=[
                 TextButton("Copy", on_click=copy_result(e, res_str)),
                 TextButton("Close", on_click=close_win),
