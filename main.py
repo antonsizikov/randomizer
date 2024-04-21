@@ -76,12 +76,15 @@ def main(page: Page):
             if cb_repeat.value or int(quantity.value) <= int(end_num.value):
                 button_count.disabled = False
                 quantity.error_text = None
+                cb_repeat.is_error = False
             else:
                 button_count.disabled = True
                 quantity.error_text =  'Too big'
+                cb_repeat.is_error = True
         else:
             button_count.disabled = True
             quantity.error_text =  None
+            cb_repeat.is_error = False
         page.update()
     
     def copy_result(e, res_str):
