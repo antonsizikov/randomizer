@@ -56,12 +56,19 @@ def main(page: Page):
         popup_window = AlertDialog(
             modal=True,
             title=Text("Result:"),
-            content=Text(f'{res_str}', selectable=True),
+            content=ft.Container(
+                content=Text(f'{res_str}', selectable=True), 
+                padding=10,
+                border_radius=10,
+                border=ft.border.all(2, ft.colors.with_opacity(0.5, ft.colors.PRIMARY)),
+                bgcolor=ft.colors.with_opacity(0.1, ft.colors.PRIMARY)
+            ),
             actions=[
                 TextButton("Copy", icon=ft.icons.COPY , on_click=copy_result),
                 TextButton("Repeat", icon=ft.icons.REPEAT, on_click=print_result_in_window),
                 TextButton("Close", icon=ft.icons.CLOSE, on_click=close_win),
             ],
+            actions_alignment=ft.MainAxisAlignment.CENTER,
         )
         
         page.dialog = popup_window
