@@ -16,6 +16,8 @@ def main(page: Page):
     end_num = TextField(label="To", value="", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
     quantity = TextField(label="Quantity", value="", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
     button_count = FilledButton(text="Count", disabled=True)
+    cb_sort = ft.Checkbox(label="Sorting", value=True) 
+    cb_repeat = ft.Checkbox(label="Repetitions", value=False, disabled=True)
     
     def randomizer(e):
         i = 1
@@ -61,7 +63,8 @@ def main(page: Page):
     
     def print_result_in_window(e):
         res_list = randomizer(e)
-        res_list = sort_list(res_list)
+        if cb_sort.value:
+            res_list = sort_list(res_list)
         res_str = list_to_str(res_list)
         show_window(e, res_str)
     
@@ -82,13 +85,9 @@ def main(page: Page):
     
     page.add(
         Row([img, title,], alignment="center"),
-        Row([
-            Column([start_num]),
-            Column([end_num]),
-            Column([quantity])    
-            ], alignment="center"),
+        Row([start_num, end_num, quantity], alignment="center"),
+        Row([cb_sort, cb_repeat], alignment="center"),
         Row([button_count], alignment="center"))
-
 
 if __name__ == "__main__":
     ft.app(target=main)
