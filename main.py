@@ -50,12 +50,16 @@ def main(page: Page):
             popup_window.open = False
             page.update()
         
+        def copy_result(e):
+            page.set_clipboard(res_str)
+        
         popup_window = AlertDialog(
             modal=True,
             title=Text("Result:"),
             content=Text(f'{res_str}', selectable=True),
             actions=[
-                TextButton("Copy", on_click=copy_result(e, res_str)),
+                TextButton("Copy", on_click=copy_result),
+                TextButton("Again", on_click=print_result_in_window),
                 TextButton("Close", on_click=close_win),
             ],
         )
@@ -86,9 +90,6 @@ def main(page: Page):
             quantity.error_text =  None
             cb_repeat.is_error = False
         page.update()
-    
-    def copy_result(e, res_str):
-        page.set_clipboard(res_str)
     
     start_num.on_change = validate
     end_num.on_change = validate
