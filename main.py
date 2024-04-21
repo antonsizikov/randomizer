@@ -75,10 +75,13 @@ def main(page: Page):
         if all([start_num.value, end_num.value, quantity.value]):
             if cb_repeat.value or int(quantity.value) <= int(end_num.value):
                 button_count.disabled = False
+                quantity.error_text = None
             else:
                 button_count.disabled = True
+                quantity.error_text =  'Too big'
         else:
             button_count.disabled = True
+            quantity.error_text =  None
         page.update()
     
     def copy_result(e, res_str):
