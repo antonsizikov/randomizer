@@ -58,9 +58,9 @@ def main(page: Page):
             title=Text("Result:"),
             content=Text(f'{res_str}', selectable=True),
             actions=[
-                TextButton("Copy", on_click=copy_result),
-                TextButton("Again", on_click=print_result_in_window),
-                TextButton("Close", on_click=close_win),
+                TextButton("Copy", icon=ft.icons.COPY , on_click=copy_result),
+                TextButton("Repeat", icon=ft.icons.REPEAT, on_click=print_result_in_window),
+                TextButton("Close", icon=ft.icons.CLOSE, on_click=close_win),
             ],
         )
         
