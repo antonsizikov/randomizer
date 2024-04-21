@@ -17,14 +17,17 @@ def main(page: Page):
     quantity = TextField(label="Quantity", value="", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
     button_count = FilledButton(text="Count", disabled=True)
     cb_sort = ft.Checkbox(label="Sorting", value=True) 
-    cb_repeat = ft.Checkbox(label="Repetitions", value=False, disabled=True)
+    cb_repeat = ft.Checkbox(label="Repetitions", value=False)
     
     def randomizer(e):
-        i = 1
         res_list = []
-        while i <= int(quantity.value):
-            res_list.append(str(randint(int(start_num.value), int(end_num.value))))
-            i = i + 1
+        while len(res_list) < int(quantity.value):
+            n = randint(int(start_num.value), int(end_num.value))
+            if not cb_repeat.value:
+                if n not in res_list:
+                    res_list.append(n)
+            else:
+                res_list.append(n)
         return res_list
     
     def sort_list(res_list):
@@ -67,10 +70,13 @@ def main(page: Page):
             res_list = sort_list(res_list)
         res_str = list_to_str(res_list)
         show_window(e, res_str)
-    
+        
     def validate(e):
         if all([start_num.value, end_num.value, quantity.value]):
-            button_count.disabled = False
+            rep_quantity_validtion = int(quantity.value) >= int(end_num.value)
+            if not cb_repeat:
+                if not rep_quantity_validtion:
+                    button_count.disabled = False
         else:
             button_count.disabled = True
         page.update()
