@@ -81,43 +81,13 @@ def main(page: Page):
     button_count.on_click = print_result_in_window
     
     page.add(
-        Row(
-            [
-                img,
-                title,
-            ],
-            alignment="center",
-        ),
-
-        Row(
-            [
-                Column(
-                    [
-                        start_num,
-                    ],
-                ),
-                Column(
-                    [
-                        end_num,
-                    ],
-                    alignment="center",
-                ),
-                Column(
-                    [
-                        quantity,
-                    ],
-                    alignment="center",
-                ),
-            ],
-            alignment="center",
-        ),
-        Row(
-            [
-                button_count,
-            ],
-            alignment="center",
-        ),
-    )
+        Row([img, title,], alignment="center"),
+        Row([
+            Column([start_num]),
+            Column([end_num]),
+            Column([quantity])    
+            ], alignment="center"),
+        Row([button_count], alignment="center"))
 
 
 if __name__ == "__main__":
