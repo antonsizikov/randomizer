@@ -7,6 +7,7 @@ def main(page: Page):
     page.title = "Randomizer"
     page.vertical_alignment = "center"
     page.horizontal_alignment = "center"
+    page.spacing = 25
     page.window_height = 400
     page.window_width = 500
     
