@@ -10,8 +10,10 @@ def main(page: Page):
     page.spacing = 25
     page.window_height = 400
     page.window_width = 500
+    page.window_min_height = 350
+    page.window_min_width = 400
     
-    img = Image(src=f"/Volumes/Files/Code/Python/flet/Randomizer/assets/icon.svg", width=50, height=50, fit=ft.ImageFit.CONTAIN)
+    img = Image(src=f"icon.svg", width=50, height=50, fit=ft.ImageFit.CONTAIN)
     title = Text("Randomizer", theme_style=ft.TextThemeStyle.DISPLAY_SMALL)
     start_num = TextField(label="From", value="", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
     end_num = TextField(label="To", value="", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
@@ -112,4 +114,4 @@ def main(page: Page):
         Row([button_count], alignment="center"))
 
 if __name__ == "__main__":
-    ft.app(target=main)
+    ft.app(target=main, assets_dir="assets")
