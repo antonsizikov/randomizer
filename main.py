@@ -8,10 +8,10 @@ def main(page: Page):
     page.vertical_alignment = "center"
     page.horizontal_alignment = "center"
     page.spacing = 25
-    page.window_height = 400
-    page.window_width = 500
-    page.window_min_height = 350
-    page.window_min_width = 400
+    page.window.height = 400
+    page.window.width = 500
+    page.window.min_height = 350
+    page.window.min_width = 400
     
     img = Image(src=f"icon.svg", width=50, height=50, fit=ft.ImageFit.CONTAIN)
     title = Text("Randomizer", theme_style=ft.TextThemeStyle.DISPLAY_SMALL)
