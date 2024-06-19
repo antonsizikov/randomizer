@@ -15,9 +15,9 @@ def main(page: Page):
     
     img = Image(src=f"icon.svg", width=50, height=50, fit=ft.ImageFit.CONTAIN)
     title = Text("Randomizer", theme_style=ft.TextThemeStyle.DISPLAY_SMALL)
-    start_num = TextField(label="From", value="", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
-    end_num = TextField(label="To", value="", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
-    quantity = TextField(label="Quantity", value="", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER)
+    start_num = TextField(label="From", value="", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER, border_color=ft.colors.ON_BACKGROUND, focused_border_color=ft.colors.PRIMARY)
+    end_num = TextField(label="To", value="", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER, border_color=ft.colors.ON_BACKGROUND, focused_border_color=ft.colors.PRIMARY)
+    quantity = TextField(label="Quantity", value="", text_align="right", width=100, input_filter=NumbersOnlyInputFilter(), keyboard_type=KeyboardType.NUMBER, border_color=ft.colors.ON_BACKGROUND, focused_border_color=ft.colors.PRIMARY)
     button_count = FilledButton(text="Count", disabled=True)
     cb_sort = ft.Checkbox(label="Sorting", value=True) 
     cb_repeat = ft.Checkbox(label="Repetitions", value=False)
